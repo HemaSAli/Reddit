@@ -1,9 +1,11 @@
-
+const fs = require("fs");
+const path = require("path");
 const {
   getPostsQuery,
   getCommentsQuery,
   getRepliesQuery,
-  getPostsOfUserQuery,getStatisticsQuery,
+  getUserPostsQuery,
+  getStatisticsQuery,
   likedAndDislikedQuery
 } = require("../database/queries/getData");
 const getPosts = response => {
@@ -58,6 +60,31 @@ const getReplies = (request, response) => {
     return response.end(JSON.stringify({ err: null, result: res }));
   });
 };
+const viewProfile = (response)=>{
+  fs.readFile(path.join(__dirname, '..', '..', 'public', 'profile.html'), (err, file) => {
+    if (err)
+    response.end(JSON.stringify({ err }));
+        else {
+        response.writeHead(200, { "content-type": "text/html" });
+        response.end(file);
+    }
+}); 
+}
+
+const getUserPosts=(request,response)=>{
+
+  const URL = request.url;
+
+const splitArray = URL.split("/")
+const lastElementIndex = splitArray.length-1
+const userId= splitArray[lastElementIndex]
+getUserPostsQuery(userId,(err,res)=>{
+  if (err) return response.end(JSON.stringify({ err }));
+  return response.end(JSON.stringify({ err: null, result: res }));
+
+})
+
+}
 
 module.exports = {
   getPosts,
@@ -65,5 +92,7 @@ module.exports = {
   likedAndDisliked,
   getComments,
   getReplies,
+  viewProfile,
+  getUserPosts
   
 };

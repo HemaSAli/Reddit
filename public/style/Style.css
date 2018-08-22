@@ -1,0 +1,335 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: cairo;
+}
+i{
+
+  cursor: pointer;
+}
+.checked { 
+  color:rgb(4, 0, 255);
+
+
+}
+.redChecked { 
+  color:rgb(255, 0, 0);
+
+
+}
+.reply{
+  display: block;
+  margin-left: 0;
+}
+
+.commentDiv{
+/* border-left:2px solid rgba(173, 166, 166, 0.445); */
+/* border-top:2px solid rgb(173, 166, 166); */
+
+  border-radius: 2px;
+  box-shadow:0 0 2px rgb(173, 166, 166);
+  align-self: flex-start;
+width: 100%;
+padding: 2%;
+padding-left: 4%;
+
+}
+.reply{
+  color: rgb(250, 250, 250);
+  font-size: 0.7rem;
+}
+.comment{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1rem;
+  color: white;
+}
+a{
+  cursor: pointer;
+}
+ a:hover{
+  color:red;
+
+}
+i:hover{
+
+  color:red;
+}
+.checked:hover{
+  color:black;
+
+}
+.Main{
+    max-width: 150vh;
+    margin: auto;
+    min-height: 100vh;
+    box-shadow:0 0 10px rgb(173, 166, 166);
+
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(168, 161, 161);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+
+.modal-content {
+  position: relative;
+  background-color: #555050;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  border-radius: 20px 20px 0px 0px;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
+
+/* The Close Button */
+
+.close {
+  color: rgb(255, 255, 255);
+  float: right;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #615f5c;
+  border-radius: 20px 20px 0px 0px;
+  color: rgb(247, 242, 242);
+}
+
+.modal-header h2 {
+  font-family: cairo;
+}
+
+.nameSpan {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: block;
+}
+
+.modal-body {
+  font-size: 0.8rem;
+  font-weight: bold;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #555050;
+  border-radius: 0px 0px 20px 20px;
+  
+}
+.error{
+
+  font-weight: bold;
+  color: red;
+}
+.modalinput{
+  margin: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1px 4px 1px 8px;
+  font-weight: bold;
+  background: rgb(235, 231, 231);
+  color:rgb(0, 0, 0);
+  font-weight: bold;
+
+
+}
+
+.commentName{
+
+  display: inline;
+  color: rgb(240, 230, 230);
+  font-size: 0.8rem;
+}
+.commentDate{
+  display: block;
+  color: rgb(240, 230, 230);
+  font-size: 0.8rem;
+}
+.modalButton{
+  text-align: center;
+
+width: 90%;
+  margin: 1rem;
+
+  border: none;
+  border-radius: 10px;
+  padding: 1px 4px 1px 8px;
+  font-weight: bold;
+  background: rgb(235, 231, 231);
+  color:rgb(0, 0, 0);
+  letter-spacing: 1px;
+  font-weight: bold;
+  transition-duration: 0.4s;
+}
+.modalButton:hover{
+  background: rgb(75, 75, 75);
+
+  color:rgb(255, 255, 255);
+
+}
+
+.header{
+ padding: 2%;
+display: flex;
+align-items: center;
+flex-direction: row;
+  min-height: 10vh;
+  /* box-shadow:0 0 10px rgb(173, 166, 166); */
+
+}
+
+.header  button ,.header  a{
+  margin: 10px;
+  border: none;
+  background:none;
+  font-size: 15px;
+  font-weight: bold;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+.timeOfPost{
+  font-size: 10px;
+  font-weight: bold;
+  display: block;
+}
+.fa-trash-alt{
+  color: red;
+}
+
+.header button:hover ,.header  a:hover{
+color: rgb(201, 30, 30);
+}
+#search{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 1%;
+  padding: 1px 4px 1px 8px;
+  font-weight: bold;
+}
+
+#searchSubmit,#createPost{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1px 5px 1px 5px;
+  font-weight: bold;
+  transition-duration: 0.3s;
+
+}
+#searchSubmit:hover,#createPost:hover{
+
+  background-color:rgb(184, 183, 187);
+  
+}
+#createPost{
+  margin-bottom: 20px;
+}
+
+.mainContent{
+  text-align: center;
+  padding: 3%;
+  min-height: 100vh;
+  box-shadow:0 0 10px rgb(173, 166, 166);
+}
+
+#postText{
+
+  font-weight: bold;
+
+}
+.post{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+padding: 2%;
+
+  text-align: start;
+/* margin-top: 20px; */
+  box-shadow:0 0 2px rgb(173, 166, 166);
+  min-height: 10vh;
+
+}
+.text{
+
+  color: white;
+  font-size: 2rem;
+}
+.post:hover{
+
+  box-shadow:0 0 10px rgb(173, 166, 166);
+
+}
+.fa-creative-commons-by{
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.fas{
+  margin-left: 10px;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+#loginAndSignupDiv{
+
+  display: none;
+}
+#signoutDiv{
+  display: none;
+}
+
+@media (max-width:600px){
+
+  .modalinput{
+width: 90%;
+  }
+}

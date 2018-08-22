@@ -13,6 +13,20 @@ const getPostsQuery = callback => {
   });
 };
 
+const getUserPostsQuery = (userId,cb)=>{
+
+  const sql = {
+    text:"SELECT * FROM users JOIN posts on posts.userid = users.id WHERE posts.userid = $1",
+    values:[userId],
+
+  }
+  dbConnection.query(sql,(err,res)=>{
+
+    if (err) return cb(err);
+    
+    return cb(null,res.rows);
+  })
+}
 const getCommentsQuery = (postId, cb) => {
   const sql = {
     text:
@@ -88,4 +102,4 @@ const likedAndDislikedQuery = (userId, postId, cb) => {
   });
 };
 
-module.exports = { getPostsQuery, getCommentsQuery ,getRepliesQuery,getStatisticsQuery,likedAndDislikedQuery};
+module.exports = { getUserPostsQuery,getPostsQuery, getCommentsQuery ,getRepliesQuery,getStatisticsQuery,likedAndDislikedQuery};

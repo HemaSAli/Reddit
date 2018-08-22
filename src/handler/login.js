@@ -29,8 +29,9 @@ const login = (request, response) => {
         if (res === false)
           return response.end(JSON.stringify({ err: "Wrong Password !" }));
         const userId = dbResult[0].id;
+        const name = dbResult[0].firstname
 
-        createCookie(userId, (err, token) => {
+        createCookie(name,userId, (err, token) => {
           if (err) return response.end(JSON.stringify({ err }));
           console.log(55);
           

@@ -1,12 +1,20 @@
 const handleHomePage = require("./handler/handlHomePage");
-const { addUser, addPost, votePost ,addReply,addComment} = require("./handler/insertData");
+const {
+  addUser,
+  addPost,
+  votePost,
+  addReply,
+  addComment,
+  deletePost
+} = require("./handler/insertData");
 const {
   getPosts,
   likedAndDisliked,
   getStatistics,
   getComments,
   getReplies,
-  viewProfile
+  viewProfile,
+  getUserPosts
 } = require("./handler/getData");
 const { login } = require("./handler/login");
 const { authChek } = require("./cookieAndAuth");
@@ -39,7 +47,7 @@ const router = (request, response) => {
     } else if (url === "/checkAuth" && method === "GET") {
       if (errAuth)
         return response.end(JSON.stringify({ err: "You Are Not Logged in !" }));
-      return response.end(JSON.stringify({ err: null }));
+      return response.end(JSON.stringify({ err: null, result: token }));
     } else if (url === "/signout" && method === "GET") {
       response.writeHead(200, { "Set-Cookie": "data=0;httpOnly;Max-Age=0" });
       response.end(
@@ -68,46 +76,51 @@ const router = (request, response) => {
       } else {
         likedAndDisliked(request, response, token);
       }
-    }else if(url.match("/getComments")&&method==="GET"){
+    } else if (url.match("/getComments") && method === "GET") {
       if (errAuth) {
         response.writeHead(302, { location: "/" });
         response.end();
       } else {
         getComments(request, response);
       }
-
-    }
-    else if(url=== "/addReply" &&method==="POST"){
+    } else if (url === "/addReply" && method === "POST") {
       if (errAuth) {
         response.writeHead(302, { location: "/" });
         response.end();
       } else {
-        addReply(request, response,token);
+        addReply(request, response, token);
       }
-      
-    }
-    else if(url.match("/getReplies") &&method==="GET"){
+    } else if (url.match("/getReplies") && method === "GET") {
       if (errAuth) {
         response.writeHead(302, { location: "/" });
         response.end();
       } else {
-        getReplies(request,response);
+        getReplies(request, response);
       }
-      
-
-    }
-    else if(url==="/addComment" &&method==="POST"){
-
+    } else if (url === "/addComment" && method === "POST") {
       if (errAuth) {
         response.writeHead(302, { location: "/" });
         response.end();
       } else {
-        addComment(request,response,token);
+        addComment(request, response, token);
       }
-    } else if(url.match("/profile")&&method==="GET"){
-    viewProfile(request,response)
-    
-    }else {
+    } else if (url.match("/viewProfile") && method === "GET") {
+      viewProfile(response);
+    } else if (url.match("/getUserPosts") && method === "GET") {
+      if (errAuth) {
+        response.writeHead(302, { location: "/" });
+        response.end();
+      } else {
+        getUserPosts(request, response);
+      }
+    } else if (url === "/deletePost" && method === "POST") {
+      if (errAuth) {
+        response.writeHead(302, { location: "/" });
+        response.end();
+      } else {
+        deletePost(request, response, token);
+      }
+    } else {
       response.end("404 !");
     }
   });

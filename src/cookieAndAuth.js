@@ -2,9 +2,10 @@ const { parse } = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
 require("env2")("./config.env");
 
-const createCookie = (userId, cb) => {
+const createCookie = (name,userId, cb) => {
   const data = {
-    id: userId
+    id: userId,
+    name,
   };
 
   sign(data, process.env.SECRET, (err, result) => {
