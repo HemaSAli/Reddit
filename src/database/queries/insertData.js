@@ -8,7 +8,8 @@ const addUserQuery = (firstName, lastName, email, password, age, callback) => {
   };
 
   dbConnection.query(sql, (err, res) => {
-    if (err) return callback(err);
+        if (err) return callback(err);
+        
     return callback(null, res.rowCount);
   });
 };
