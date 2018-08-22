@@ -107,12 +107,9 @@ const router = (request, response) => {
     } else if (url.match("/viewProfile") && method === "GET") {
       viewProfile(response);
     } else if (url.match("/getUserPosts") && method === "GET") {
-      if (errAuth) {
-        response.writeHead(302, { location: "/" });
-        response.end();
-      } else {
+
         getUserPosts(request, response);
-      }
+
     } else if (url === "/deletePost" && method === "POST") {
       if (errAuth) {
         response.writeHead(302, { location: "/" });
