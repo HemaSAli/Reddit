@@ -35,8 +35,9 @@ const addUser = (request, response) => {
         emailSignupValue,
         hash,
         ageSignUpValue,
-        (error, result) => {
-          if (error) return response.end(JSON.stringify({ err }));
+        (err, result) => {
+          
+          if (err) return response.end(JSON.stringify({ err:err }));
           return response.end(
             JSON.stringify({ err: null, result: "Welcome To Our Site ! " })
           );

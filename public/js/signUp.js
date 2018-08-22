@@ -82,8 +82,10 @@ signUpButton.addEventListener("click", e => {
       ageSignUpValue
     };
     request("POST", "/addUser", JSON.stringify(newUser), (err, res) => {
-      if (err) return swal(err, " ", "error");
-      swal("Welcome !", "You Can Sign In now !", "success").then(value => {
+      if (err) return swal(err.detail, " ", "error");
+      swal(res,"", "success").then(value => {
+        console.log(res);
+        
         window.location = "/";
       });
     });
