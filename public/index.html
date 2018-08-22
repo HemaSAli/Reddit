@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/public/style/indexStyle.css">
+        <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+                crossorigin="anonymous">
+
+
+
+        <title>Share Your Idea !</title>
+</head>
+
+<body>
+        <div class="Main">
+                <div class="header">
+                        <div id="loginAndSignupDiv">
+                                <button id="login">login</button>
+                                <button id="signup">signup</button>
+
+                        </div>
+                        <div id="signoutDiv">
+                                <button id="signout">signout</button>
+
+                        </div>
+
+                        <div>
+                                <input type="text" name="search" id="search" placeholder="Search for Post/User">
+                                <button id="searchSubmit">Search</button>
+
+                        </div>
+
+
+
+
+                </div>
+
+                <div class="mainContent" id="mainContent">
+                        <button id="createPost"> Create Post</button>
+                        <div id="postsContent">
+
+                        </div>
+                </div>
+
+
+
+                <div id="loginModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                        <i class="fas fa-times close"></i>
+                                        <h2>Login</h2>
+
+                                </div>
+
+                                <div class="modal-body">
+
+                                        <input class="modalinput" type="text" id="email" placeholder="Email">
+                                        <input class="modalinput" type="password" id="password" placeholder="password">
+                                        <button class="modalButton" id="loginButton">login</button>
+                                </div>
+                        </div>
+                </div>
+
+                <div id="signUpModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                        <i class="fas fa-times close"></i>
+                                        <h2>SignUp</h2>
+
+                                </div>
+
+                                <div class="modal-body">
+                                        <div>
+                                                <input class="modalinput" type="text" id="firstNameSignUp" placeholder="First Name" required>
+
+                                                <input class="modalinput" type="text" id="lastNameSignUp" placeholder="Last Name" required>
+                                                <p id="name" class="error"></p>
+
+                                        </div>
+                                        <div>
+                                                <div>
+                                                        <input class="modalinput" type="email" id="emailSignup" placeholder=" Email" required>
+                                                        <p id="emailErr" class="error"></p>
+                                                </div>
+
+                                                <input class="modalinput" type="number" id="ageSignUp" placeholder="Age" min="10" max="80" required>
+                                                <p id="ageErr" class="error"></p>
+
+
+                                        </div>
+                                        <div>
+                                                <input class="modalinput" type="password" id="passwordsignUp" placeholder="password" required>
+
+                                                <input class="modalinput" type="password" id="confirmPasswordsignUp" placeholder="Confirm password" required>
+                                                <p id="passwordErr" class="error"></p>
+                                                <p id="confirmErr" class="error"></p>
+
+                                        </div>
+
+
+                                        <button class="modalButton" id="signUpButton">signUp</button>
+                                </div>
+                        </div>
+                </div>
+                <div id="CreatePostModel" class="modal">
+                        <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                        <i class="fas fa-times close" id="close"></i>
+                                        <h2>Create Post</h2>
+
+                                </div>
+
+                                <div class="modal-body">
+
+                                        <textarea cols="50" class="modalinput" id="postText" placeholder="Enter Your Post Here .. "></textarea>
+                                        <button class="modalButton" id="sendPost">Send</button>
+                                </div>
+                        </div>
+                </div>
+                <div id="showPostModal" class="modal">
+                        <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                        <i class="fas fa-times close" id="close"></i>
+                                        <h2>Show Post</h2>
+
+                                </div>
+
+                                <div class="modal-body" id="showPost">
+
+
+<!-- 
+                                        <p class="text">Post Text</p>
+                                        <div class="commentDiv">
+                                                <p class="comment">comment 1
+                                                        <i class="reply">reply</i>
+
+                                                </p>
+                                                <div class="commentDiv">
+                                                        <p class="comment">comment 1
+                                                                <i class="reply">reply</i>
+                                                                <textarea name="" class="modalinput reply"id="" cols="30"></textarea>
+
+
+                                                        </p>
+
+                                                </div>
+                                                <div class="commentDiv">
+                                                        <p class="comment">comment 1
+                                                                <i class="reply">reply</i>
+
+                                                        </p>
+                                                        <div class="commentDiv">
+                                                                <p class="comment">comment 1
+                                                                        <i class="reply">reply</i>
+
+                                                                </p>
+                                                        </div>
+                                                </div>
+                                                <div class="commentDiv">
+                                                        <p class="comment">comment 1
+                                                                <i class="reply">reply</i>
+
+                                                        </p>
+                                                </div>
+                                        </div>
+                                        <div class="commentDiv">
+                                                <p class="comment">comment 1
+                                                        <i class="reply">reply</i>
+                                                        <textarea name="" class="modalinput reply"id="" cols="30"></textarea>
+
+                                                </p>
+
+
+                                        </div>-->
+
+
+                                 
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+        </div>
+
+
+
+</body>
+<script src="/public/js/request.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/public/js/login.js"></script>
+<script src="/public/js/signUp.js"></script>
+<script src="/public/js/addPost.js"></script>
+<script src="/public/js/modal.js"></script>
+<script src="/public/js/showPost.js"></script>
+<script src="/public/js/indexJs.js"></script>
+
+</html>
