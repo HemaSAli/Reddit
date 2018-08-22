@@ -24,7 +24,7 @@ const showPost = postId => {
         JSON.stringify(commentData),
         (err, res) => {
           if (err) return swal(err, "", "error");
-          swal("comment sent !", " ", "success").then(value => {
+          swal(res, " ", "success").then(value => {
             showPost(postId);
           });
         }
@@ -109,10 +109,14 @@ const createDiv = (commentElement, div, postId) => {
 
         request("POST", "/addReply", JSON.stringify(replyData), (err, res) => {
           if (err) return swal(err, "", "error");
-          swal("Reliy sent !", "", "success").then(value => {
+          swal("Reply sent !", "", "success").then(value => {
             showPost(postId);
           });
         });
+      }
+      else{
+        swal("You Cant Add Empty Comment ", "", "error");
+
       }
     });
 

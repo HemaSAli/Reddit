@@ -12,7 +12,31 @@ const addUserQuery = (firstName, lastName, email, password, age, callback) => {
     return callback(null, res.rowCount);
   });
 };
+const deletePostQuery=(postID,userID,cb)=>{
+  const sql = {
+    text: " SELECT * FROM users JOIN posts on posts.userid = users.id WHERE posts.userid =$1 AND posts.id = $2",
+    values: [userID, postID]
+  };
+  const sql2 = {
+    text: "DELETE FROM posts WHERE id = $1",
+    values: [postID]
+  };
 
+  dbConnection.query(sql,(err,res)=>{
+    if (err) return cb(err);
+    if(res.rowCount===0)
+    return cb(new TypeError("You Can Only Delete Your Posts !"));
+dbConnection.query(sql2,(err,res)=>{
+  if (err) return cb(err);
+  return cb(null, res.rowCount);
+
+
+})
+  })
+
+
+
+}
 const addPostQuery = (userID, postText, postDate, cb) => {
   const sql = {
     text: "INSERT INTO posts (userID, postText, postDate) VALUES ($1,$2,$3)",
@@ -124,5 +148,6 @@ module.exports = {
   addCommentQuery,
   commentVote,
   votePostQuery,
-  addReplyQuery
+  addReplyQuery,
+  deletePostQuery
 };

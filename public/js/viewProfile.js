@@ -1,13 +1,16 @@
-//getPosts//
+const URL = window.location.href;
+
+const splitArray = URL.split("/")
+const lastElementIndex = splitArray.length-1
+const userId= splitArray[lastElementIndex]
+const home = document.getElementById("home");
+
 const mainContent = document.getElementById("postsContent");
 const login = document.getElementById("login");
 const signupButton = document.getElementById("signup");
 const loginAndSignupDiv = document.getElementById("loginAndSignupDiv");
 const signoutDiv = document.getElementById("signoutDiv");
 const signout = document.getElementById("signout");
-const createPost = document.getElementById("createPost");
-const home = document.getElementById("home");
-const header = document.getElementById("header");
 
 request("GET", "/checkAuth", null, (errAuth, token) => {
   if (errAuth) {
@@ -16,19 +19,17 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
   } else {
     signoutDiv.style.display = "block";
     loginAndSignupDiv.style.display = "none";
-    const name = document.getElementById("myProfile");
-    const myProfileButton = document.getElementById("myProfileButton");
-    myProfileButton.textContent = token.name;
-    name.href = `viewProfile/${token.id}`;
+    const name = document.getElementById("myProfile")
+    const myProfileButton = document.getElementById("myProfileButton")
+    myProfileButton.textContent=token.name;    
+    name.href = `viewProfile/${token.id}`
   }
 
-  home.addEventListener("click", e => {
-    window.location = "/";
-  });
-  createPost.addEventListener("click", e => {
-    if (errAuth) return showModel("loginModal");
-    showModel("CreatePostModel");
-  });
+  home.addEventListener("click",e=>{
+  
+    window.location="/"
+    
+      })
   signout.addEventListener("click", e => {
     request("GET", "/signout", null, (err, res) => {
       if (err) return swal(err, "", "error");
@@ -43,21 +44,21 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
   signupButton.addEventListener("click", e => {
     showModel("signUpModal");
   });
+
   const getPosts = () => {
     mainContent.textContent = "";
-    request("GET", "/getPosts", null, (err, res) => {
-      if (err) return swal("Error in getting Posts ! ", "", "error");
+    request("GET",`/getUserPosts/${userId}`,null,(err,res)=>{
+        if (err) return swal(err, "", "error");
       const postsArray = res;
       postsArray.forEach(post => {
         const postDiv = document.createElement("div");
         postDiv.classList.add("post");
-
         const postTextDiv = document.createElement("div");
         const p = document.createElement("p");
         p.setAttribute("id", "postText");
         p.textContent = post.posttext;
         const name = document.createElement("a");
-        name.href = `/viewProfile/${post.userid}`;
+        name.href=`/viewProfile/${post.userid}`
         const timeOfPost = document.createElement("p");
         name.classList.add("fab");
         name.classList.add("fa-creative-commons-by");
@@ -71,6 +72,9 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
         postTextDiv.appendChild(timeOfPost);
         postDiv.appendChild(postTextDiv);
         mainContent.appendChild(postDiv);
+        name.addEventListener("click", e => {
+        swal("Coming Soon , view Profile ..")
+        });
         const statisticsDiv = document.createElement("div");
         const likes = document.createElement("i");
         const disLikes = document.createElement("i");
@@ -118,7 +122,7 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
               "/votePost",
               JSON.stringify(voteData),
               (err, res) => {
-                if (err) return swal("Error !", "", "error");
+                if (err) return swal(err, "", "error");
 
                 likes.classList.toggle("checked");
                 disLikes.classList.toggle("redChecked");
@@ -138,7 +142,7 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
               "/votePost",
               JSON.stringify(voteData),
               (err, res) => {
-                if (err) return swal("Error !", "", "error");
+                if (err) return swal(err, "", "error");
                 likes.classList.toggle("checked");
 
                 disLikes.classList.toggle("redChecked");
@@ -148,12 +152,7 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
           });
 
           postDiv.addEventListener("click", e => {
-            if (
-              e.target !== likes &&
-              e.target !== disLikes &&
-              e.target !== name &&
-              e.target !== deletePost
-            ) {
+            if (e.target !== likes && e.target !== disLikes && e.target !== name &&e.target!==deletePost) {
               if (errAuth) return showModel("loginModal");
               showPost(post.id);
             }
@@ -181,3 +180,5 @@ request("GET", "/checkAuth", null, (errAuth, token) => {
     });
   };
 });
+
+
