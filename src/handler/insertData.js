@@ -59,6 +59,10 @@ const addPost = (request, response, token) => {
 
     let date = new Date();
     date = moment(date).format("MMMM Do YYYY, h:mm a");
+        if( newPost.Text.trim().length===0)
+    return response.end(
+      JSON.stringify({ err: "You Cant Add Empty Post ! " })
+    );
     addPostQuery(token.id, newPost.Text, date, (err, res) => {
       if (err) return response.end(JSON.stringify({ err }));
       return response.end(JSON.stringify({ err: null, result: "Post added " }));
