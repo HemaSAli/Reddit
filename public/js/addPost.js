@@ -9,7 +9,7 @@ const postData = {
 }
 request("POST","/addPost",JSON.stringify(postData),(err,res)=>{
 
-    if (err) return swal("Error !","","error");
+    if (err) return swal(err,"","error");
     
     return swal(res,"","success").then(value=>{
         window.location="/";
