@@ -8,9 +8,7 @@ const login = (request, response) => {
     userDate += chunk;
   });
   request.on("end", () => {
-    userDate = JSON.parse(userDate);
-    console.log(userDate.email);
-    
+    userDate = JSON.parse(userDate);    
     if (
       userDate.email.trim().length === 0 ||
       userDate.password.trim().length === 0
@@ -18,9 +16,7 @@ const login = (request, response) => {
       return response.end(
         JSON.stringify({ err: "Enter Valid Email/Password !" })
       );
-    dbCheckEmail(userDate.email, (err, dbResult) => {
-        console.log(dbResult);
-        
+    dbCheckEmail(userDate.email, (err, dbResult) => {        
       if (err) return response.end(JSON.stringify({ err }));
       if (!dbResult[0])
         return response.end(JSON.stringify({ err: "Email Not Found !" }));
@@ -32,9 +28,7 @@ const login = (request, response) => {
         const name = dbResult[0].firstname
 
         createCookie(name,userId, (err, token) => {
-          if (err) return response.end(JSON.stringify({ err }));
-          console.log(55);
-          
+          if (err) return response.end(JSON.stringify({ err }));          
           response.writeHead(
             200,
             {"Set-Cookie":

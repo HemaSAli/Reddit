@@ -135,8 +135,6 @@ const addComment = (request, response, token) => {
   });
 };
 const deletePost = (request, response, token) => {
-  console.log(545);
-
   let postID = "";
   request.on("data", chunk => {
     postID += chunk;
